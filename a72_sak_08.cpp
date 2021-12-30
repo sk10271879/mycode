@@ -8,38 +8,44 @@ void oi(){}template<class Head, class... Tail>void oi(Head&& head,Tail&&... tail
 #define OIV(a) if(a.empty()){cout<<"\n";}else{for(ll i00=0;i00<(a).size();i00++) if((a)[i00]!=INF and i00!=(a).size()-1){cout<<(a)[i00]<<" ";} else if((a)[i00]==INF and i00!=(a).size()-1){cerr<<"I ";} else if((a)[i00]!=INF and i00==(a).size()-1){cerr<<(a)[i00]<<"\n";} else if((a)[i00]==INF and i00==(a).size()-1){cerr<<"I\n";}}
 #define OIVV(a)if(a.empty()){cout<<"\n";}else{for(ll i00=0;i00<(a).size();i00++){for(ll j00=0;j00<(a[i00]).size();j00++){if(j00!=(a)[i00].size()-1 and (a)[i00][j00]!=INF){cerr<<a[i00][j00]<<" ";}else if(j00!=(a)[i00].size()-1 and (a)[i00][j00]==INF){cerr<<"I ";}else if(j00==(a)[i00].size()-1 and (a)[i00][j00]!=INF){cerr<<a[i00][j00]<<"\n";}else if(j00==(a)[i00].size()-1 and (a)[i00][j00]==INF){cerr<<"I\n";}}}}
 
+bool is_uruu(ll y){
+    if(y%100==0 and y%400!=0) return false;
+    else if(y%4==0) return true;
+    return false;
+}
 
-
-int main(){//未完成
-    // 1990~2021とする
-    ll y,m,d; cin>>y>>m>>d;
-    ll N=31;// 調べる年代の幅
-    Vll A(N+1,0);// A[i]:=年i + 1990に対して日の累積和
+ll youbi(ll y, ll m, ll d){
+    ll N=51;// 調べる年代の幅
+    Vll A(N+1,0);// A[i]:= 1970+i-1年までの累積和
     FOR(i,1,N +1){
-        if((i+1990)%100==0 and (i+1990)%400!=0) A[i]=A[i-1]+365;
-        else if((i+1990)%4==0) A[i]=A[i-1]+366;
+        if(is_uruu(1970+i-1)) A[i]=A[i-1]+366;
         else A[i]=A[i-1]+365;
     }
-    bool uruu=false;// yがうるう年かどうか
-    if(y%100==0 and y%400!=0) uruu=false;
-    else if(y%4==0) uruu=true;
-    else uruu=false;
-    
-    // その年の1/1からのdistance
+
+    // その年の1/1からの合計日数
     ll dis=0;
     FOR(i,1,m){
         if(i==1 or i==3 or i==5 or i==7 or i==8 or i==10 or i==12) dis+=31;
-        else if(i==2 and uruu) dis+=29;
-        else if(i==2 and !uruu) dis+=28;
+        else if(i==2 and is_uruu(y)) dis+=29;
+        else if(i==2 and !is_uruu(y)) dis+=28;
         else if(i==4 or i==6 or i==9 or i==11) dis+=30;
     }
     dis+=d;// その月の日付までたす
-    // 1990 1/0 は日曜日(google調べ) 日 mod 0
-    ll all =A[y-1990]+dis;
+    // 1970 1/1 は木曜日(google調べ)
+    //vector<string> S={"水","木","金","土","日","月","火"};   
+    ll all =A[y-1970]+dis;
     ll mod=all%7;
-    vector<string> S={"日","月","火","水","木","金","土"};
-    oi(S[mod]);
-    
+    return mod; 
+}
+
+int main(){//未完成
+    // 1970~2021とする
+    ll y,m,d; //cin>>y>>m>>d;
+    y=1980; m=1; d=1;
+    vector<string> S={"水","木","金","土","日","月","火"};
+    ll mod=0;
+    mod=youbi(1992,10,27);
+    OI(S[mod]);
     
     return 0;
 }
