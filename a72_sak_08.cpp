@@ -40,13 +40,11 @@ ll youbi(ll y, ll m, ll d){
 
 int main(){//未完成
     // 1970~2021とする
-    ll y,m,d; //cin>>y>>m>>d;
-    y=1980; m=1; d=1;
+    ll y,m,d; cin>>y>>m>>d;
     vector<string> S={"水","木","金","土","日","月","火"};
-    ll mod=0;
-    mod=youbi(1992,10,27);
+    ll mod=youbi(y,m,d);
     OI(S[mod]);
-    
+
     return 0;
 }
 
