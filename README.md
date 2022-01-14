@@ -17,12 +17,12 @@ https://algo-method.com/
 # 2.各ファイルの大まかな説明
 
 
-* read_me.txt
+* read_me.txt<br>
 アルゴ式にグラフをプロットするページがあれば鬼に金棒なので
 それの一部をpythonで書いてみたalgo_plot.pyなどの詳細の説明
 <br>
 
-* algo_plot.txt
+* algo_plot.txt<br>
 ユーザーが入力した関数，プロットデータを以下のように加工した入力
 xの最小値
 xの最大値
@@ -38,7 +38,7 @@ xの最大値
 ..
 <br>
 
-* algo_plot.py
+* algo_plot.py<br>
 algo_plot.txtから入力を受け取り
 関数やデータ(x,y)を受け取り，
 plot.pyを作成する．
@@ -46,14 +46,14 @@ plot.pyを作成する．
 
 
 
-* plot.py
+* plot.py<br>
 matplotlibを使ってグラフに関数と生データの散布図を
 想定した範囲にプロットするもの．
 <br>
 
 
 
-* shogi.cpp
+* shogi.cpp<br>
 ここで働かせてくださいの時に将棋プログラムを以下の要件で作成したもの．
 bitboardの未熟版
 簡単な駒ごとの点数を足した評価関数
